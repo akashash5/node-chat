@@ -4,7 +4,7 @@
     socket.on('connect',function (){
       console.log('connect to server');
 
-      socket.emit('createMessage',{ from:"hsaka",text:"hello"});
+     //socket.emit('createMessage',{ from:"hsaka",text:"hello"});
     });
 
     socket.on('disconnect',function (){
