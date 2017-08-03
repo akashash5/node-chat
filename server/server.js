@@ -57,7 +57,7 @@ app.post('/signup', function(req, res) {
       console.log(JSON.stringify(result.ops,undefined,2));
     });
      // req.session.username=user; 
-    res.redirect(301, '/chat.html');
+    res.redirect(301, '/');
 res.end();
 });
 
@@ -77,7 +77,11 @@ app.post('/login',
 );
 
 app.get('/loginFailure', function(req, res, next) {
-  res.send('Failed to authenticate');
+  res.redirect('/loginFail');
+});
+
+app.get('/loginFail',function(req,res){
+  res.sendFile(publicPath+'/loginFail.html');
 });
 
 app.get('/loginSuccess', function(req, res, next) {
@@ -87,7 +91,7 @@ app.get('/loginSuccess', function(req, res, next) {
 });
 
 app.get('/room',function(req,res){
-  res.sendFile(publicPath+'/index2.html');
+  res.sendFile(publicPath+'/join.html');
 });
 app.get('/api/user_data', function(req, res) {
 
