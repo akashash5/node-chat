@@ -23,7 +23,7 @@ socket.on('connect', function () {
     if(error)
 {
   alert(error);
-  window.location.href='/';
+  window.location.href='/room';
 }
     else
     {
