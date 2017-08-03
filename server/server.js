@@ -77,10 +77,6 @@ app.post('/login',
 );
 
 app.get('/loginFailure', function(req, res, next) {
-  res.redirect('/loginFail');
-});
-
-app.get('/loginFail',function(req,res){
   res.sendFile(publicPath+'/loginFail.html');
 });
 
@@ -103,6 +99,15 @@ app.get('/api/user_data', function(req, res) {
                     username: req.user.username
                 });
             }
+        });
+
+var users=new Users();
+ app.get('/api/room_data', function(req, res) {
+
+      var roomsArray=users.getRooms();
+      console.log(roomsArray);
+      res.json(JSON.stringify(roomsArray));
+  
         });
 
 passport.serializeUser(function(user, done) {
@@ -138,7 +143,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
   
 var server = http.createServer(app);
 var io = socketIO(server);
-var users=new Users();
+
 io.on('connection', (socket) => {
   console.log('New user connected');
 
